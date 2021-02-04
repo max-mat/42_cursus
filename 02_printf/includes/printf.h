@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:32:34 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/02 17:16:50 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/04 17:15:10 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,54 +17,47 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+
+
+#include <stdio.h>
+
+
+
 #include "libft.h"
 
-typedef struct	s_list
+typedef struct	s_struct
 {
 	int		flags_min;
-	int		flags_0;
+	int		flags_zero;
 	int		width;
 	int		prec;
 	char	type;
 	int		len;
-}				t_list;
+	int		is_int_neg;
+}				t_struct;
 
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
+void	init_list(t_struct *list);
 
 /*
 ** parse_flags.c
 */
-void	parse_flags(int *i, const char *str, va_list args, int *p);
+void	parse_flags(int *i, const char *str, va_list args, t_struct *list);
+void	parse_width(int *i, const char *str, t_struct *list);
+void	parse_prec(int *i, const char *str, t_struct *list, va_list args);
 
 /*
-** flags_align.c
+** print.c
 */
-void	parse_rightalign(int *i, const char *str, va_list args, int *p);
-void	parse_leftalign(int *i, const char *str, va_list args, int *p);
+void	print_list(t_struct *list, va_list args);
+void	print_int(t_struct *list, int num);
 
 /*
-** flags_zero.c
+** utils.c
 */
-void	parse_zero(int *i, const char *str, va_list args, int *p);
-
-/*
-** flags_int.c
-*/
-void	flags_int(va_list args, int *p);
-void	flags_uint(va_list args, int *p);
-void	flags_hex(va_list args, int *p);
-void	flags_uhex(va_list args, int *p);
-
-/*
-** flags_adr.c
-*/
-void	flags_adr(va_list args, int *p);
-void	flags_per(int *p);
-
-/*
-** flags_str.c
-*/
-void	flags_str(va_list args, int *p);
-void	flags_char(va_list args, int *p);
+void	print_zero(int num);
+void	print_space(int num);
+void	is_int_neg(t_struct *list, int *num);
+void	print_width(t_struct *list, int num);
 
 #endif
