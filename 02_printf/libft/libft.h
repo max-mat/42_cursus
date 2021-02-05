@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 09:41:32 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/04 14:11:32 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/05 16:54:58 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isprint(int c);
 char				*ft_itoa(int n);
-char				*ft_itoa_new(unsigned long nbr, int base);
+char				*ft_itoa_base(unsigned long nbr, int base, char c);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 void				ft_lstclear(t_list **lst, void (*del)(void *));
@@ -64,6 +64,7 @@ void				ft_putunbr(unsigned int n, int *p);
 char				**ft_split(char const *s, char c);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
+char				*ft_strcut(const char *str, int start, int end);
 char				*ft_strdup(const char *s1);
 char				*ft_strjoin(char const *s1, char const *s2);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);

@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_strcut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/04 15:43:03 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/04 18:11:37 by mmatsego         ###   ########.fr       */
+/*   Created: 2021/02/05 16:53:47 by mmatsego          #+#    #+#             */
+/*   Updated: 2021/02/05 16:53:59 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-void	print_zero(int num)
+char	*ft_strcut(const char *str, int start, int end)
 {
-	while (num > 0)
-	{
-		ft_putchar('0');
-		num--;
-	}
-}
+	char	*ret;
+	int		i;
 
-void	print_width(t_struct *list, int num)
-{
-	char c;
-
-	if (list->flags_zero == 1 && !list->prec)
-		c = '0';
-	else
-		c = ' ';
-	while (num > 0)
+	i = 0;
+	if (start < 0 || (end - start) < 0)
+		return (NULL);
+	if (end > (int)ft_strlen(str))
+		end = ft_strlen(str);
+	ret = (char *)malloc(sizeof(char) * (end - start) + 1);
+	while (start <= end)
 	{
-		ft_putchar(c);
-		num--;
+		ret[i] = str[start];
+		start++;
+		i++;
 	}
-}
-
-void	is_int_neg(t_struct *list, int *num)
-{
-	if (*num < 0)
-	{
-		list->is_int_neg = 1;
-		*num *= -1;
-		list->width--;
-	}
+	ret[i] = '\0';
+	return (ret);
 }

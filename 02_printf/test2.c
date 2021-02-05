@@ -4,10 +4,19 @@ int	ft_printf(const char *str, ...);
 
 int	main(void)
 {
-	printf("Number is [%-15.5d] end\n", -123);
+	int n = 5;
+	int *ptr1;
 
-	ft_printf("Number is [%0-00-15.5d] end\n", -123);
-	
+	char c = 'c';
+	char *ptr2;
+
+	ptr1 = &n;
+	ptr2 = &c;
+
+	printf("Number is [%% %% %d] end\n", 5);
+
+	ft_printf("Number is [%% %% %d] end\n", 5);
+
 	return (0);
 }
 

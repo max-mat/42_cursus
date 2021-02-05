@@ -6,7 +6,7 @@
 #    By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/13 15:28:49 by mmatsego          #+#    #+#              #
-#    Updated: 2021/02/04 14:11:14 by mmatsego         ###   ########.fr        #
+#    Updated: 2021/02/05 16:54:23 by mmatsego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC = ft_atoi.c \
 	  ft_isdigit.c \
 	  ft_isprint.c \
 	  ft_itoa.c \
-	  ft_itoa_new.c \
+	  ft_itoa_base.c \
 	  ft_memccpy.c \
 	  ft_memchr.c \
 	  ft_memcmp.c \
@@ -46,6 +46,7 @@ SRC = ft_atoi.c \
 	  ft_split.c \
 	  ft_strchr.c \
 	  ft_strclr.c \
+	  ft_strcut.c \
 	  ft_strdup.c \
 	  ft_strjoin.c \
 	  ft_strlcat.c \

@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:50:24 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/04 15:50:51 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/05 12:13:53 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			init_list(&list);
-			parse_flags(&i, str, args, &list);
+			parse(&i, str, args, &list);
 		}
 		else
 		{
