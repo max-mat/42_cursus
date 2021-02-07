@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:50:24 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 12:13:53 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/07 16:36:09 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_list(t_struct *list)
 	list->flags_min = 0;
 	list->flags_zero = 0;
 	list->width = 0;
-	list->prec = 0;
+	list->prec = -1;
 	list->type = '0';
 	list->len = 0;
 	list->is_int_neg = 0;
@@ -39,6 +39,7 @@ int	ft_printf(const char *str, ...)
 		{
 			init_list(&list);
 			parse(&i, str, args, &list);
+			res += list.len;
 		}
 		else
 		{

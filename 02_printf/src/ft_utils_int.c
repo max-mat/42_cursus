@@ -6,17 +6,17 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:26:08 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 11:12:14 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/07 15:34:29 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	print_zero(int num)
+void	print_zero(t_struct *list, int num)
 {
 	while (num > 0)
 	{
-		ft_putchar('0');
+		ft_putchar_len(list, '0');
 		num--;
 	}
 }
@@ -33,7 +33,7 @@ void	print_width(t_struct *list, int num)
 		c = ' ';
 	while (num > 0)
 	{
-		ft_putchar(c);
+		ft_putchar_len(list, c);
 		num--;
 	}
 }
@@ -51,10 +51,11 @@ void	is_int_neg(t_struct *list, int *num)
 void	print_left_justified(t_struct *list, int len, char *tmp)
 {
 	if (list->is_int_neg)
-		ft_putchar('-');
+		ft_putchar_len(list, '-');
 	if (list->prec > len)
-		print_zero(list->prec - len);
+		print_zero(list, list->prec - len);
 	ft_putstr(tmp);
+	list->len += len;
 	if (list->width > len)
 	{
 		if (list->prec > len)
@@ -69,7 +70,7 @@ void	print_right_justified(t_struct *list, int len, char *tmp)
 	if (list->flags_zero && !list->prec)
 	{
 		if (list->is_int_neg)
-			ft_putchar('-');
+			ft_putchar_len(list, '-');
 		print_width(list, list->width - len);
 	}
 	else 
@@ -79,15 +80,16 @@ void	print_right_justified(t_struct *list, int len, char *tmp)
 			if (list->width > list->prec)
 				print_width(list, list->width - list->prec);
 			if (list->is_int_neg)
-				ft_putchar('-');
-			print_zero(list->prec - len);
+				ft_putchar_len(list, '-');
+			print_zero(list, list->prec - len);
 		}
 		else if (list->width > len)
 		{
 			print_width(list, list->width - len);
 			if (list->is_int_neg)
-				ft_putchar('-');
+				ft_putchar_len(list, '-');
 		}
 	}
 	ft_putstr(tmp);
+	list->len += len;
 }

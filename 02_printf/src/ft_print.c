@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:52:14 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 18:04:04 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:21:28 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ void	print_list(t_struct *list, va_list args)
 	else if (list->type == 's')
 		print_s(list, va_arg(args, char *));
 	else if (list->type == '%')
-		ft_putchar('%');
+		print_percent(list, '%');
 }

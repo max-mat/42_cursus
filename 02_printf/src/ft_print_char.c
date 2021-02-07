@@ -6,12 +6,46 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:34:19 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 17:06:22 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:21:44 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
+void	ft_putchar_len(t_struct *list, char c)
+{
+	write(1, &c, 1);
+	list->len++;
+}
+
+void	ft_putstr_len(t_struct *list, char *str, int len)
+{
+	while (*str != '\0' && len > 0)
+	{
+		ft_putchar_len(list, *str);
+		str++;
+		len--;
+	}
+}
+
+void	print_percent(t_struct *list, char c)
+{
+	if (list->width < 0)
+	{
+		list->width *= -1;
+		list->flags_min = 1;
+	}
+	if (list->flags_min)
+	{
+		ft_putchar_len(list, c);
+		print_width(list, list->width - 1);
+	}
+	else
+	{
+		print_width(list, list->width - 1);
+		ft_putchar_len(list, c);
+	}
+}
 void	print_c(t_struct *list, char c)
 {
 	if (list->width < 0)
@@ -21,13 +55,13 @@ void	print_c(t_struct *list, char c)
 	}
 	if (list->flags_min)
 	{
-		ft_putchar(c);
+		ft_putchar_len(list, c);
 		print_width(list, list->width - 1);
 	}
 	else
 	{
 		print_width(list, list->width - 1);
-		ft_putchar(c);
+		ft_putchar_len(list, c);
 	}
 }
 
@@ -41,19 +75,18 @@ void	print_s(t_struct *list, char *str)
 		list->width *= -1;
 		list->flags_min = 1;
 	}
-	if (list->prec < len)
-	{
-		str = ft_strcut(str, 0, list->prec - 1);
-		len = ft_strlen(str);
-	}
+	if (list->prec == 0)
+		len = 0;
+	else if (list->prec > 0 && list->prec < len)
+		len = list->prec;
 	if (list->flags_min)
 	{
-		ft_putstr(str);
+		ft_putstr_len(list, str, len);
 		print_width(list, list->width - len);
 	}
 	else
 	{
 		print_width(list, list->width - len);
-		ft_putstr(str);
+		ft_putstr_len(list, str, len);
 	}
 }

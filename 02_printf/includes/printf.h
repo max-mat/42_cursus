@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:32:34 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 16:12:35 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/07 18:20:19 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,16 @@ void	print_p(t_struct *list, size_t num);
 /*
 ** print_char.c
 */
+void	ft_putchar_len(t_struct *list, char c);
+void	ft_putstr_len(t_struct *list, char *str, int len);
+void	print_percent(t_struct *list, char c);
 void	print_c(t_struct *list, char c);
 void	print_s(t_struct *list, char *str);
 
 /*
 ** utils_int.c
 */
-void	print_zero(int num);
+void	print_zero(t_struct *list, int num);
 void	print_width(t_struct *list, int num);
 void	is_int_neg(t_struct *list, int *num);
 void	print_left_justified(t_struct *list, int len, char *tmp);
