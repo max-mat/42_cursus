@@ -6,20 +6,27 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:52:14 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/07 18:21:28 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:56:59 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	print_int(t_struct *list, int num)
+void	print_int(t_struct *list, long num)
 {
 	char	*tmp;
 	int		len;
-
-	is_int_neg(list, &num);
-	tmp = ft_itoa(num);
+	
+	if (num == INT_MIN)
+		tmp = ft_strdup("-2147483648");
+	else
+	{
+		is_int_neg(list, &num);
+		tmp = ft_itoa(num);
+	}
 	len = ft_strlen(tmp);
+	if (list->prec == 0 && num == 0)
+		len = 0;
 	if (list->flags_min)
 		print_left_justified(list, len, tmp);
 	else
@@ -34,6 +41,8 @@ void	print_u(t_struct *list, unsigned int num)
 
 	tmp = ft_itoa(num);
 	len = ft_strlen(tmp);
+	if (list->prec == 0 && num == 0)
+		len = 0;
 	if (list->flags_min)
 		print_left_justified(list, len, tmp);
 	else
@@ -51,6 +60,8 @@ void	print_x(t_struct *list, unsigned int num)
 	else
 		tmp = ft_itoa_base(num, 16, 'X');
 	len = ft_strlen(tmp);
+	if (list->prec == 0 && num == 0)
+		len = 0;
 	if (list->flags_min)
 		print_left_justified(list, len, tmp);
 	else

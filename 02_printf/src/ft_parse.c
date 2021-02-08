@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 12:12:06 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 18:02:54 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:21:07 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	parse_flags(int *i, const char *str, va_list args, t_struct *list)
 				|| str[*i] == 'c' || str[*i] == 's' || str[*i] == 'p'
 				|| str[*i] == 'x' || str[*i] == 'X' || str[*i] == '%')
 			list->type = str[*i];
+		else if (str[*i] == ' ')
+			ft_putchar_len(list, ' ');
 		(*i)++;
 	}
 }
@@ -67,8 +69,8 @@ void	parse_prec(int *i, const char *str, t_struct *list, va_list args)
 {
 	int res;
 
-	res = 0;
 	(*i)++;
+	res = 0;
 	if (str[*i] == '*')
 		list->prec = va_arg(args, int);
 	else if (str[*i] >= '0' && str[*i] <= '9')
@@ -79,6 +81,11 @@ void	parse_prec(int *i, const char *str, t_struct *list, va_list args)
 			(*i)++;
 		}
 		list->prec = res;
+		(*i)--;
+	}
+	else
+	{
+		list->prec = 0;
 		(*i)--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 10:32:34 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/07 18:20:19 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 15:13:00 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
+#include <limits.h>
 
 
 #include <stdio.h>
@@ -52,7 +52,7 @@ void	parse_flags(int *i, const char *str, va_list args, t_struct *list);
 ** print.c
 */
 void	print_list(t_struct *list, va_list args);
-void	print_int(t_struct *list, int num);
+void	print_int(t_struct *list, long num);
 void	print_u(t_struct *list, unsigned int num);
 void	print_x(t_struct *list, unsigned int num);
 void	print_p(t_struct *list, size_t num);
@@ -69,9 +69,9 @@ void	print_s(t_struct *list, char *str);
 /*
 ** utils_int.c
 */
-void	print_zero(t_struct *list, int num);
+void	print_zero_space(t_struct *list, int num, char c);
 void	print_width(t_struct *list, int num);
-void	is_int_neg(t_struct *list, int *num);
+void	is_int_neg(t_struct *list, long *num);
 void	print_left_justified(t_struct *list, int len, char *tmp);
 void	print_right_justified(t_struct *list, int len, char *tmp);
 

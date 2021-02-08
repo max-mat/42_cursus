@@ -6,13 +6,13 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 15:08:30 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/01/18 15:15:00 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:49:01 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_getnumlen(long long num, int base)
+static size_t	ft_getnumlen(size_t num, int base)
 {
 	size_t	len;
 
@@ -32,13 +32,11 @@ static size_t	ft_getnumlen(long long num, int base)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(size_t n)
 {
 	char	*str;
 	size_t	i;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	i = ft_getnumlen(n, 10);
 	if (!(str = (char *)malloc(i + 1)))
 		return (NULL);

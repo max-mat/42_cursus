@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:34:19 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/07 18:21:44 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:08:03 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ void	print_percent(t_struct *list, char c)
 	if (list->flags_min)
 	{
 		ft_putchar_len(list, c);
-		print_width(list, list->width - 1);
+		print_zero_space(list, list->width - 1, ' ');
 	}
 	else
 	{
-		print_width(list, list->width - 1);
+		if (list->flags_zero)
+			print_zero_space(list, list->width - 1, '0');
+		else
+			print_zero_space(list, list->width - 1, ' ');
 		ft_putchar_len(list, c);
 	}
 }
@@ -68,7 +71,8 @@ void	print_c(t_struct *list, char c)
 void	print_s(t_struct *list, char *str)
 {
 	int	len;
-
+	if (str == NULL)
+		str = ft_strdup("(null)");
 	len = ft_strlen(str);
 	if (list->width < 0)
 	{
