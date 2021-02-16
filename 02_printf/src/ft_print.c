@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:52:14 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/08 15:56:59 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:08:23 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_int(t_struct *list, long num)
 {
 	char	*tmp;
 	int		len;
-	
+
 	if (num == INT_MIN)
 		tmp = ft_strdup("-2147483648");
 	else
@@ -36,8 +36,8 @@ void	print_int(t_struct *list, long num)
 
 void	print_u(t_struct *list, unsigned int num)
 {
-	char 	*tmp;
-	int 	len;
+	char	*tmp;
+	int		len;
 
 	tmp = ft_itoa(num);
 	len = ft_strlen(tmp);

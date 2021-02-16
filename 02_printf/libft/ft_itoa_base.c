@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 13:48:12 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/05 14:48:46 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:04:29 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static size_t	ft_getnumlen(long long num, int base)
 	return (len);
 }
 
-char	*ft_itoa_base(unsigned long nbr, int base, char c)
+char			*ft_itoa_base(unsigned long nbr, int base, char c)
 {
-	size_t			len;
-	char			*str;
+	size_t	len;
+	char	*str;
 
 	len = ft_getnumlen(nbr, base);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))

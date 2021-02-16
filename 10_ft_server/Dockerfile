@@ -6,7 +6,7 @@
 #    By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/13 13:13:54 by mmatsego          #+#    #+#              #
-#    Updated: 2021/02/16 12:40:11 by mmatsego         ###   ########.fr        #
+#    Updated: 2021/02/16 14:18:38 by mmatsego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-keyout /etc/nginx/ssl/example.key -out /etc/nginx/ssl/example.crt \
 	-subj "/C=IT/ST=Lazio/L=Rome/O=42/OU=Luiss/CN=localhost"
 
+#COPY srcs/index.html /var/www/localhost/
 COPY srcs/start.sh ./
 
 # Command to run when container starts

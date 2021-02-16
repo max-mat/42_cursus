@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 15:50:24 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/08 16:39:44 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:05:22 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_list(t_struct *list)
 	list->is_int_neg = 0;
 }
 
-int	ft_printf(const char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	va_list		args;
 	t_struct	list;

@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:26:08 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/08 16:52:28 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:05:49 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	print_right_justified(t_struct *list, int len, char *tmp)
 			ft_putchar_len(list, '-');
 		print_width(list, list->width - len);
 	}
-	else 
+	else
 	{
 		if (list->prec > len)
 		{
