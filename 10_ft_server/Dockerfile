@@ -6,7 +6,7 @@
 #    By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/13 13:13:54 by mmatsego          #+#    #+#              #
-#    Updated: 2021/02/16 14:18:38 by mmatsego         ###   ########.fr        #
+#    Updated: 2021/02/17 16:37:57 by mmatsego         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,16 @@ FROM debian:buster
 
 # Update package list & upgrade system
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get -y install vim
+RUN apt-get -y install wget vim mc
 
 # NGINX
 RUN apt-get -y install nginx
 
 # MARIADB
-# RUN apt-get -y install mariadb-server
+RUN apt-get -y install mariadb-server
 
 # PHP set of extentions to communicate with MariaDB
-# RUN apt-get -y install php-fpm php-mysql
+RUN apt-get -y install php7.3 php-mysql php-fpm php-pdo php-gd php-cli php-mbstring
 
 # Expose port 80 for HTTP and 443 for HTTPS. So container listens these ports
 EXPOSE 80 443
@@ -32,17 +32,32 @@ EXPOSE 80 443
 # Create the root-directory for our domain
 RUN mkdir /var/www/localhost
 
+# PHPMYADMIN
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz
+RUN tar -xvf phpMyAdmin-5.0.4-all-languages.tar.gz && \
+	rm -rf phpMyAdmin-5.0.4-all-languages.tar.gz
+RUN mv phpMyAdmin-5.0.4-all-languages/ /var/www/localhost/phpmyadmin
+COPY /srcs/config.inc.php /var/www/localhost/phpmyadmin
+
+# WORDPRESS. chown = change owner
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar -xzvf latest.tar.gz && rm -rf latest.tar.gz
+RUN mv wordpress/ /var/www/localhost/wordpress
+COPY srcs/wp-config.php /var/www/localhost/wordpress
+
 # NGINX
-COPY srcs/localhost.conf /etc/nginx/sites-available/localhost.conf
-RUN ln -s /etc/nginx/sites-available/localhost.conf /etc/nginx/sites-enabled/
+COPY srcs/localhost.conf /etc/nginx/sites-available/localhost
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 RUN rm -rf /etc/nginx/sites-enabled/default
 RUN mkdir /var/www/localhost/autoindex
 COPY srcs/localhost.conf /var/www/localhost/autoindex
 COPY srcs/autoindex_off.conf /var/www/localhost/autoindex
 COPY srcs/autoindex_on.sh .
 COPY srcs/autoindex_off.sh .
-#RUN chown -R www-data:www-data /var/www/localhost && \
-#	chmod -R 755 /var/www/localhost
+#COPY srcs/index.html /var/www/localhost
+
+RUN chown -R www-data:www-data /var/www/localhost && \
+	chmod -R 755 /var/www/localhost
 
 # SSL
 RUN apt-get install openssl -y
