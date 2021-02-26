@@ -6,29 +6,21 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:59:08 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/24 17:39:00 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:11:37 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../cub3D.h"
 
-int		ft_get_color(char **map, int y, int x)
+void	ft_put_pixel(t_win *win, int x, int y, int color)
 {
-	int color;
+	char	*dst;
 
-	color = 0;
-	if (map[y][x] == ' ' || map[y][x] == '0')
-		color = 0x00000000;
-	else if (map[y][x] == '1')
-		color = 0x00FFFFFF;
-	else if (map[y][x] == '2')
-		color = 0x0000FF00;
-	else if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
-		color = 0x00000000;
-	return (color);
+	dst = win->addr + (x * (win->bpp / 8) + y * win->line_l);
+	*(int *)dst = color;
 }
 
-void	ft_put_pixel(t_all *all, t_point point, int color)
+void	ft_scale_img(t_win *win, t_point point, int color)
 {
 	t_point end;
 
@@ -40,7 +32,7 @@ void	ft_put_pixel(t_all *all, t_point point, int color)
 	{
 		while (point.x < end.x)
 		{
-			mlx_pixel_put(all->win->mlx, all->win->win, point.x, point.y, color);
+			ft_put_pixel(win, point.x, point.y, color);
 			point.x++;
 		}
 		point.x -= SCALE;
@@ -51,25 +43,29 @@ void	ft_put_pixel(t_all *all, t_point point, int color)
 void	ft_get_image(t_all *all)
 {
 	t_point		point;
-	int			color;
+	t_win		*win;
 
-	color = 0;
-	ft_bzero(&point, sizeof(t_point));
+	win = all->win;
+	win->img = mlx_new_image(win->mlx, 1920, 1080);
+	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->line_l, &win->endian);
+/*	ft_bzero(&point, sizeof(t_point));
 	while (all->map[point.y])
 	{
 		point.x = 0;
 		while (all->map[point.y][point.x])
 		{
-			color = ft_get_color(all->map, point.y, point.x);
-			ft_put_pixel(all, point, color);
+			if (all->map[point.y][point.x] == '1')
+				ft_scale_img(all->win, point, 0x00FFFFFF);
 			point.x++;
 		}
 		point.y++;
-	}
-	ft_put_player(all, all->plr->x, all->plr->y);
+	}*/
+	ft_put_player(all, all->plr);
+	mlx_put_image_to_window(win->mlx, win->win, win->img, 0, 0);
+	mlx_destroy_image(win->mlx, win->img);
 }
 
-void	ft_get_window(t_win *win, t_all *all)
+void	ft_get_window(t_plr *plr, t_win *win, t_all *all)
 {
 	win->mlx = NULL;
 	win->win = NULL;
@@ -78,22 +74,9 @@ void	ft_get_window(t_win *win, t_all *all)
 	win->img = mlx_new_image(win->mlx, 1920, 1080);
 	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->line_l, &win->endian);
 	all->win = win;
-	ft_get_player(all);
+	ft_get_player(all->map, plr);
+	all->plr = plr;
 	ft_get_image(all);
 	ft_get_events(all, win);
 	mlx_loop(win->mlx);
 }
-
-void	ft_renew_window(t_all *all)
-{
-	all->win->mlx = NULL;
-	all->win->win = NULL;
-	all->win->mlx = mlx_init();
-	all->win->win = mlx_new_window(all->win->mlx, 1920, 1080, "Cub  2D");
-	all->win->img = mlx_new_image(all->win->mlx, 1920, 1080);
-	all->win->addr = mlx_get_data_addr(all->win->img, &all->win->bpp, &all->win->line_l, &all->win->endian);
-	ft_get_image(all);
-	ft_get_events(all, all->win);
-	mlx_loop(all->win->mlx);
-}
-

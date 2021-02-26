@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 09:50:19 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/24 17:19:32 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/02/25 11:36:03 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Insert a map", 2);
 		return (1);
 	}
-	all.plr = &plr;
-	ft_get_window(&win, &all);
+	ft_get_window(&plr, &win, &all);
+	free(all.map);
 	return (0);
 }
