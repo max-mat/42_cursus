@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:14:06 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/26 17:43:28 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:42:22 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 #include "./libft/libft.h"
 #include "./minilibx/mlx.h"
 
-#define SCALE 24
+#define SCALE 32
 #define PI 3.1415926535
+#define FOV 60 * PI / 180
 
 typedef struct	s_win
 {
@@ -49,6 +50,8 @@ typedef struct	s_plr
 	float		dir; // angle between Ox and player's direction
 	float		start; // ray's left end
 	float		end; // ray's right end
+//	float		ax;	// point of intersection
+//	float		ay;
 }				t_plr;
 
 typedef struct	s_all
@@ -75,7 +78,7 @@ int				key_press(int key, t_all *all);
 /* player.c */
 void			ft_get_player(char **map, t_plr *plr);
 void			ft_put_player(t_all *all, t_plr *plr);
-void			ft_draw_line (t_all *all, int ray_length, int ray_num);
+void			ft_draw_line (t_all *all, float ray_length, int ray_num, t_plr ray);
 
 
 #endif

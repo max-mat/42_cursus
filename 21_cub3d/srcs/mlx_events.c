@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:22 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/26 15:23:56 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/01 18:11:34 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,21 @@ int		key_press(int key, t_all *all)
 	{
 		all->plr->y += sin(all->plr->dir) * 4;
 		all->plr->x += cos(all->plr->dir) * 4;
-		
+		if (all->map[(int)(all->plr->y / SCALE)][(int)(all->plr->x / SCALE)] == '1')
+		{
+			all->plr->y -= sin(all->plr->dir) * 4;
+			all->plr->x -= cos(all->plr->dir) * 4;
+		}
 	}
 	if (key == 1)
 	{
 		all->plr->y -= sin(all->plr->dir) * 4;
 		all->plr->x -= cos(all->plr->dir) * 4;
+		if (all->map[(int)(all->plr->y / SCALE)][(int)(all->plr->x / SCALE)] == '1')
+		{
+			all->plr->y += sin(all->plr->dir) * 4;
+			all->plr->x += cos(all->plr->dir) * 4;
+		}
 	}
 	if (key == 0)
 	{
