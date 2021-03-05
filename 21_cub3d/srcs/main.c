@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 09:50:19 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/02/25 11:36:03 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/05 14:23:42 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ char	**ft_read_map(char *argv1)
 
 int	main(int argc, char **argv)
 {
-	t_win win;
-	t_plr plr;
-	t_all all;
+	t_win		win;
+	t_plr		plr;
+	t_texture	texture;
+	t_all 		all;
 
 	if (argc == 2)
 		all.map = ft_read_map(argv[1]);

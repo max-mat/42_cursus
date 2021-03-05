@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:22:22 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/03/01 18:11:34 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:14:23 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,31 @@ int		key_press(int key, t_all *all)
 	mlx_clear_window(all->win->mlx, all->win->win);
 	if (key == 13)
 	{
-		all->plr->y += sin(all->plr->dir) * 4;
-		all->plr->x += cos(all->plr->dir) * 4;
+		all->plr->y += sin(all->plr->dir) * 32;
+		all->plr->x += cos(all->plr->dir) * 32;
 		if (all->map[(int)(all->plr->y / SCALE)][(int)(all->plr->x / SCALE)] == '1')
 		{
-			all->plr->y -= sin(all->plr->dir) * 4;
-			all->plr->x -= cos(all->plr->dir) * 4;
+			all->plr->y -= sin(all->plr->dir) * 32;
+			all->plr->x -= cos(all->plr->dir) * 32;
 		}
 	}
 	if (key == 1)
 	{
-		all->plr->y -= sin(all->plr->dir) * 4;
-		all->plr->x -= cos(all->plr->dir) * 4;
+		all->plr->y -= sin(all->plr->dir) * 32;
+		all->plr->x -= cos(all->plr->dir) * 32;
 		if (all->map[(int)(all->plr->y / SCALE)][(int)(all->plr->x / SCALE)] == '1')
 		{
-			all->plr->y += sin(all->plr->dir) * 4;
-			all->plr->x += cos(all->plr->dir) * 4;
+			all->plr->y += sin(all->plr->dir) * 32;
+			all->plr->x += cos(all->plr->dir) * 32;
 		}
 	}
 	if (key == 0)
 	{
 //		all->plr->y -= sin(all->plr->dir) * 4;
-		all->plr->x -= cos(all->plr->dir) * 4;
+		all->plr->x -= cos(all->plr->dir) * 32;
 	}
 	if (key == 2)
-		all->plr->x += cos(all->plr->dir) * 4;
+		all->plr->x += cos(all->plr->dir) * 32;
 	if (key == 123)
 		all->plr->dir -= 0.1;
 	if (key == 124)

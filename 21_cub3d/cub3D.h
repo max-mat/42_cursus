@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 10:14:06 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/03/01 17:42:22 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:03:53 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,33 @@
 #include "./libft/libft.h"
 #include "./minilibx/mlx.h"
 
-#define SCALE 32
+#define SCALE 128
 #define PI 3.1415926535
+#define PI_2 PI / 2
+#define PI_3 3 * PI / 2
 #define FOV 60 * PI / 180
+
+#define texWidth 64
+#define texHeight 64
 
 typedef struct	s_win
 {
-	void	*mlx;
-	void	*win;
-	void 	*img;
-	void	*addr;
-	int		line_l;
-	int		bpp;
-	int		endian;
+	void		*mlx;
+	void		*win;
+	void 		*img;
+	void		*addr;
+	int			line_l;
+	int			bpp;
+	int			endian;
+
+	int     img_width;
+    int     img_height;
 }				t_win;
 
 typedef struct	s_point
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
 }				t_point;
 
 typedef struct	s_plr
@@ -49,16 +57,21 @@ typedef struct	s_plr
 	float		y;
 	float		dir; // angle between Ox and player's direction
 	float		start; // ray's left end
-	float		end; // ray's right end
-//	float		ax;	// point of intersection
-//	float		ay;
 }				t_plr;
+
+typedef struct	s_texture
+{
+	int			columns;
+	int			rows;
+	int			colors;
+}				t_texture;
 
 typedef struct	s_all
 {
-	t_win	*win;
-	t_plr	*plr;
-	char	**map;
+	t_win		*win;
+	t_plr		*plr;
+	t_texture	*texture;
+	char		**map;
 }				t_all;
 
 /* main.c */
@@ -79,6 +92,7 @@ int				key_press(int key, t_all *all);
 void			ft_get_player(char **map, t_plr *plr);
 void			ft_put_player(t_all *all, t_plr *plr);
 void			ft_draw_line (t_all *all, float ray_length, int ray_num, t_plr ray);
-
+float			get_horiz_distance(t_all *all, t_plr ray);
+float			get_vert_distance(t_all *all, t_plr ray);
 
 #endif

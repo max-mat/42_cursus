@@ -6,7 +6,7 @@
 /*   By: mmatsego <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 14:59:08 by mmatsego          #+#    #+#             */
-/*   Updated: 2021/03/01 12:13:53 by mmatsego         ###   ########.fr       */
+/*   Updated: 2021/03/05 16:37:09 by mmatsego         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,11 @@ void	ft_get_window(t_plr *plr, t_win *win, t_all *all)
 	win->mlx = NULL;
 	win->win = NULL;
 	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx, 1920, 1080, "Cub  2D");
-	win->img = mlx_new_image(win->mlx, 1920, 1080);
-	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->line_l, &win->endian);
+	win->win = mlx_new_window(win->mlx, 1920, 1080, "Cub  3D");
+//	win->img = mlx_new_image(win->mlx, 1920, 1080);
+//	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->line_l, &win->endian);
 	all->win = win;
+//	ft_get_texture(all);
 	ft_get_player(all->map, plr);
 	all->plr = plr;
 	ft_get_image(all);
